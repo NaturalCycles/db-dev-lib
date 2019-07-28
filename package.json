@@ -39,7 +39,7 @@
   "engines": {
     "node": ">=10.13"
   },
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "devDependency of db-lib to test db-lib compatible implementations",
   "author": "Natural Cycles Team",
   "license": "MIT"
