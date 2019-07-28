@@ -1,16 +1,16 @@
 {
   "name": "@naturalcycles/db-dev-lib",
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "@naturalcycles/db-lib": ">=1.2.1"
+  },
   "peerDependencies": {
-    "@naturalcycles/db-lib": ">=1.2.1",
     "@naturalcycles/js-lib": ">=8.2.1",
     "@naturalcycles/nodejs-lib": ">=6.8.0",
     "jest": ">=24.8.0",
     "rxjs": ">=6.5.2"
   },
   "devDependencies": {
-    "@naturalcycles/db-lib": "^1.2.1",
     "@naturalcycles/dev-lib": "^7.14.1",
     "@naturalcycles/js-lib": "^8.2.1",
     "@naturalcycles/nodejs-lib": "^6.8.0",
