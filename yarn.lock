@@ -476,7 +476,7 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@naturalcycles/db-lib@^1.2.1":
+"@naturalcycles/db-lib@>=1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@naturalcycles/db-lib/-/db-lib-1.2.1.tgz#b8a0c4a76a19d2fc933973615a5f86472aa2cc17"
   integrity sha512-mjIPVuV+poxdltJxbgc5cQ6Fzkt6zwf4P7WvranYcAIFzNGcYlnoPEMoBnqqgbT1uYVtDaAANQqFDnGFzoFQwQ==
