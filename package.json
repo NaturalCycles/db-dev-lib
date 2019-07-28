@@ -2,7 +2,8 @@
   "name": "@naturalcycles/db-dev-lib",
   "scripts": {},
   "dependencies": {
-    "@naturalcycles/db-lib": ">=1.2.1"
+    "@naturalcycles/db-lib": "^1.2.1",
+    "@naturalcycles/test-lib": "^1.0.3"
   },
   "peerDependencies": {
     "@naturalcycles/js-lib": ">=8.2.1",

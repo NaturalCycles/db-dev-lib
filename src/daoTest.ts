@@ -1,10 +1,12 @@
 import { CommonDao, DBQuery } from '@naturalcycles/db-lib'
 import { _pick } from '@naturalcycles/js-lib'
+import { deepFreeze } from '@naturalcycles/test-lib'
 import { toArray } from 'rxjs/operators'
 import { TEST_TABLE, TestItem, testItems } from './model'
 
 export async function testDao (dao: CommonDao): Promise<void> {
   const items = testItems(3)
+  deepFreeze(items)
   const [item1] = items
 
   const queryAll = () => new DBQuery<TestItem>(TEST_TABLE, 'all')
