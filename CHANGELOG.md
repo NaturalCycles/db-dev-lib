@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.1...v1.1.2) (2019-08-10)
+
+
+### Bug Fixes
+
+* fix ([89c91a3](https://github.com/NaturalCycles/db-dev-lib/commit/89c91a3))
+* revert ([8089530](https://github.com/NaturalCycles/db-dev-lib/commit/8089530))
+
 ## [1.1.1](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.0...v1.1.1) (2019-08-10)
 
 
