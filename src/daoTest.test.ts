@@ -1,4 +1,4 @@
-import { CommonDao, InMemoryDB } from '@naturalcycles/db-lib'
+import { CommonDao, DBQuery, InMemoryDB } from '@naturalcycles/db-lib'
 import { testDao } from './daoTest'
 import { TEST_TABLE, testItemSchema } from './model'
 
@@ -11,5 +11,5 @@ test('InMemory testDao', async () => {
     dbmSchema: testItemSchema,
   })
 
-  await testDao(dao)
+  await testDao(dao, DBQuery)
 })

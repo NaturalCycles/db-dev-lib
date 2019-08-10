@@ -1,10 +1,10 @@
-import { CommonDao, DBQuery } from '@naturalcycles/db-lib'
+import { CommonDao, DBQuery as DBQueryType } from '@naturalcycles/db-lib'
 import { _pick } from '@naturalcycles/js-lib'
 import { deepFreeze } from '@naturalcycles/test-lib'
 import { toArray } from 'rxjs/operators'
 import { TEST_TABLE, TestItem, testItems } from './model'
 
-export async function testDao (dao: CommonDao): Promise<void> {
+export async function testDao (dao: CommonDao, DBQuery: typeof DBQueryType): Promise<void> {
   const items = testItems(3)
   deepFreeze(items)
   const [item1] = items

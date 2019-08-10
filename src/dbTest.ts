@@ -1,10 +1,10 @@
-import { CommonDB, DBQuery } from '@naturalcycles/db-lib'
+import { CommonDB, DBQuery as DBQueryType } from '@naturalcycles/db-lib'
 import { _pick } from '@naturalcycles/js-lib'
 import { deepFreeze } from '@naturalcycles/test-lib'
 import { toArray } from 'rxjs/operators'
 import { TEST_TABLE, TestItem, testItems } from './model'
 
-export async function testDB (db: CommonDB): Promise<void> {
+export async function testDB (db: CommonDB, DBQuery: typeof DBQueryType): Promise<void> {
   const items = testItems(3)
   deepFreeze(items)
   const [item1] = items
