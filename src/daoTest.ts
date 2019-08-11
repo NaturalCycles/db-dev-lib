@@ -9,6 +9,11 @@ export async function testDao (dao: CommonDao, DBQuery: typeof DBQueryType): Pro
   deepFreeze(items)
   const [item1] = items
 
+  const expectedItems = items.map(i => ({
+    ...i,
+    updated: expect.any(Number),
+  }))
+
   const queryAll = () => new DBQuery<TestItem>(TEST_TABLE, 'all')
 
   // DELETE ALL initially
@@ -33,29 +38,29 @@ export async function testDao (dao: CommonDao, DBQuery: typeof DBQueryType): Pro
 
   const itemsSaved = await dao.saveBatch(items)
 
-  expect(itemsSaved).toEqual(items)
+  expect(itemsSaved).toEqual(expectedItems)
 
   // GET not empty
 
   itemsLoaded = await dao.getByIds(items.map(i => i.id).concat('abcd'))
-  expect(itemsLoaded).toEqual(items)
+  expect(itemsLoaded).toEqual(expectedItems)
 
   // QUERY
   itemsLoaded = await dao.runQuery(queryAll())
-  expect(itemsLoaded).toEqual(items)
+  expect(itemsLoaded).toEqual(expectedItems)
   // console.log(itemsLoaded)
 
   let q = new DBQuery<TestItem>(TEST_TABLE, 'only even').filter('even', '=', true)
   itemsLoaded = await dao.runQuery(q)
-  expect(itemsLoaded).toEqual(items.filter(i => i.even))
+  expect(itemsLoaded).toEqual(expectedItems.filter(i => i.even))
 
   q = new DBQuery<TestItem>(TEST_TABLE, 'desc').order('id', true)
   itemsLoaded = await dao.runQuery(q)
-  expect(itemsLoaded).toEqual([...items].reverse())
+  expect(itemsLoaded).toEqual([...expectedItems].reverse())
 
   q = new DBQuery<TestItem>(TEST_TABLE).select([])
   itemsLoaded = await dao.runQuery(q)
-  expect(itemsLoaded).toEqual(items.map(item => _pick(item, ['id'])))
+  expect(itemsLoaded).toEqual(expectedItems.map(item => _pick(item, ['id'])))
 
   expect(await dao.runQueryCount(new DBQuery(TEST_TABLE))).toBe(3)
 
@@ -64,11 +69,11 @@ export async function testDao (dao: CommonDao, DBQuery: typeof DBQueryType): Pro
     .streamQuery(queryAll())
     .pipe(toArray())
     .toPromise()
-  expect(itemsLoaded).toEqual(items)
+  expect(itemsLoaded).toEqual(expectedItems)
 
   // DELETE BY
   const idsDeleted = await dao.deleteBy('even', false)
-  expect(idsDeleted).toEqual(items.filter(item => !item.even).map(item => item.id))
+  expect(idsDeleted).toEqual(expectedItems.filter(item => !item.even).map(item => item.id))
 
   expect(await dao.runQueryCount(queryAll())).toBe(1)
 
