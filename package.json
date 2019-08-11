@@ -3,7 +3,8 @@
   "scripts": {},
   "dependencies": {
     "@naturalcycles/db-lib": "^1.2.1",
-    "@naturalcycles/test-lib": "^1.0.3"
+    "@naturalcycles/test-lib": "^1.0.3",
+    "type-fest": "^0.7.1"
   },
   "peerDependencies": {
     "@naturalcycles/js-lib": ">=8.2.1",
