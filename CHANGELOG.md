@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.4...v1.1.5) (2019-08-18)
+
+
+### Bug Fixes
+
+* update to recent db-lib ([bcf0446](https://github.com/NaturalCycles/db-dev-lib/commit/bcf0446))
+
 ## [1.1.4](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.3...v1.1.4) (2019-08-11)
 
 
