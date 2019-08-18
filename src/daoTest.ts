@@ -4,7 +4,7 @@ import { deepFreeze } from '@naturalcycles/test-lib'
 import { toArray } from 'rxjs/operators'
 import { TEST_TABLE, TestItem, testItems } from './model'
 
-export async function testDao (dao: CommonDao, DBQuery: typeof DBQueryType): Promise<void> {
+export async function testDao (dao: CommonDao<any>, DBQuery: typeof DBQueryType): Promise<void> {
   const items = testItems(3)
   deepFreeze(items)
   const [item1] = items
@@ -72,7 +72,8 @@ export async function testDao (dao: CommonDao, DBQuery: typeof DBQueryType): Pro
   expect(itemsLoaded).toEqual(expectedItems)
 
   // DELETE BY
-  const idsDeleted = await dao.deleteBy('even', false)
+  q = new DBQuery<TestItem>(TEST_TABLE).filter('even', '=', false)
+  const idsDeleted = await dao.deleteByQuery(q)
   expect(idsDeleted).toEqual(expectedItems.filter(item => !item.even).map(item => item.id))
 
   expect(await dao.runQueryCount(queryAll())).toBe(1)
