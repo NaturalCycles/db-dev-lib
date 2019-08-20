@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.7...v1.1.8) (2019-08-20)
+
+
+### Bug Fixes
+
+* order in daoTest ([e471476](https://github.com/NaturalCycles/db-dev-lib/commit/e471476))
+
 ## [1.1.7](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.6...v1.1.7) (2019-08-20)
 
 
