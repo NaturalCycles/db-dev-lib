@@ -1,5 +1,5 @@
 import { CommonDao, DBQuery as DBQueryType } from '@naturalcycles/db-lib'
-import { _pick } from '@naturalcycles/js-lib'
+import { _pick, _sortBy } from '@naturalcycles/js-lib'
 import { deepFreeze } from '@naturalcycles/test-lib'
 import { toArray } from 'rxjs/operators'
 import { TEST_TABLE, TestItem, testItems } from './model'
@@ -47,12 +47,12 @@ export async function testDao (dao: CommonDao<any>, DBQuery: typeof DBQueryType)
 
   // QUERY
   itemsLoaded = await dao.runQuery(queryAll())
-  expect(itemsLoaded).toEqual(expectedItems)
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(expectedItems)
   // console.log(itemsLoaded)
 
   let q = new DBQuery<TestItem>(TEST_TABLE, 'only even').filter('even', '=', true)
   itemsLoaded = await dao.runQuery(q)
-  expect(itemsLoaded).toEqual(expectedItems.filter(i => i.even))
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(expectedItems.filter(i => i.even))
 
   q = new DBQuery<TestItem>(TEST_TABLE, 'desc').order('id', true)
   itemsLoaded = await dao.runQuery(q)
@@ -60,7 +60,7 @@ export async function testDao (dao: CommonDao<any>, DBQuery: typeof DBQueryType)
 
   q = new DBQuery<TestItem>(TEST_TABLE).select([])
   itemsLoaded = await dao.runQuery(q)
-  expect(itemsLoaded).toEqual(expectedItems.map(item => _pick(item, ['id'])))
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(expectedItems.map(item => _pick(item, ['id'])))
 
   expect(await dao.runQueryCount(new DBQuery(TEST_TABLE))).toBe(3)
 
@@ -69,12 +69,12 @@ export async function testDao (dao: CommonDao<any>, DBQuery: typeof DBQueryType)
     .streamQuery(queryAll())
     .pipe(toArray())
     .toPromise()
-  expect(itemsLoaded).toEqual(expectedItems)
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(expectedItems)
 
   // DELETE BY
   q = new DBQuery<TestItem>(TEST_TABLE).filter('even', '=', false)
   const idsDeleted = await dao.deleteByQuery(q)
-  expect(idsDeleted).toEqual(expectedItems.filter(item => !item.even).map(item => item.id))
+  expect(idsDeleted.sort()).toEqual(expectedItems.filter(item => !item.even).map(item => item.id))
 
   expect(await dao.runQueryCount(queryAll())).toBe(1)
 
