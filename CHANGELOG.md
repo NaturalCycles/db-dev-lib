@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.5...v1.1.6) (2019-08-20)
+
+
+### Bug Fixes
+
+* adopt test ([3ace6a9](https://github.com/NaturalCycles/db-dev-lib/commit/3ace6a9))
+
 ## [1.1.5](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.4...v1.1.5) (2019-08-18)
 
 
