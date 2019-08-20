@@ -31,9 +31,7 @@ export async function testDB (db: CommonDB, DBQuery: typeof DBQueryType): Promis
 
   // SAVE
 
-  const itemsSaved = await db.saveBatch<TestItem>(TEST_TABLE, items)
-
-  expect(itemsSaved).toEqual(items)
+  await db.saveBatch<TestItem>(TEST_TABLE, items)
 
   // GET not empty
 
