@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.6...v1.1.7) (2019-08-20)
+
+
+### Bug Fixes
+
+* allow unsorted query results ([c9e4a60](https://github.com/NaturalCycles/db-dev-lib/commit/c9e4a60))
+
 ## [1.1.6](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.5...v1.1.6) (2019-08-20)
 
 
