@@ -1,5 +1,5 @@
 import { CommonDB, DBQuery as DBQueryType } from '@naturalcycles/db-lib'
-import { _pick } from '@naturalcycles/js-lib'
+import { _pick, _sortBy } from '@naturalcycles/js-lib'
 import { deepFreeze } from '@naturalcycles/test-lib'
 import { toArray } from 'rxjs/operators'
 import { TEST_TABLE, TestItem, testItems } from './model'
@@ -40,12 +40,12 @@ export async function testDB (db: CommonDB, DBQuery: typeof DBQueryType): Promis
 
   // QUERY
   itemsLoaded = await db.runQuery(queryAll())
-  expect(itemsLoaded).toEqual(items)
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(items)
   // console.log(itemsLoaded)
 
   let q = new DBQuery<TestItem>(TEST_TABLE, 'only even').filter('even', '=', true)
   itemsLoaded = await db.runQuery(q)
-  expect(itemsLoaded).toEqual(items.filter(i => i.even))
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(items.filter(i => i.even))
 
   q = new DBQuery<TestItem>(TEST_TABLE, 'desc').order('id', true)
   itemsLoaded = await db.runQuery(q)
@@ -53,7 +53,7 @@ export async function testDB (db: CommonDB, DBQuery: typeof DBQueryType): Promis
 
   q = new DBQuery<TestItem>(TEST_TABLE).select([])
   itemsLoaded = await db.runQuery(q)
-  expect(itemsLoaded).toEqual(items.map(item => _pick(item, ['id'])))
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(items.map(item => _pick(item, ['id'])))
 
   expect(await db.runQueryCount(new DBQuery(TEST_TABLE))).toBe(3)
 
@@ -62,12 +62,12 @@ export async function testDB (db: CommonDB, DBQuery: typeof DBQueryType): Promis
     .streamQuery(queryAll())
     .pipe(toArray())
     .toPromise()
-  expect(itemsLoaded).toEqual(items)
+  expect(_sortBy(itemsLoaded, 'id')).toEqual(items)
 
   // DELETE BY
   q = new DBQuery<TestItem>(TEST_TABLE).filter('even', '=', false)
   const idsDeleted = await db.deleteByQuery(q)
-  expect(idsDeleted).toEqual(items.filter(item => !item.even).map(item => item.id))
+  expect(idsDeleted.sort()).toEqual(items.filter(item => !item.even).map(item => item.id))
 
   expect(await db.runQueryCount(queryAll())).toBe(1)
 
