@@ -66,8 +66,8 @@ export async function testDB (db: CommonDB, DBQuery: typeof DBQueryType): Promis
 
   // DELETE BY
   q = new DBQuery<TestItem>(TEST_TABLE).filter('even', '=', false)
-  const idsDeleted = await db.deleteByQuery(q)
-  expect(idsDeleted.sort()).toEqual(items.filter(item => !item.even).map(item => item.id))
+  const deleted = await db.deleteByQuery(q)
+  expect(deleted).toBe(items.filter(item => !item.even).length)
 
   expect(await db.runQueryCount(queryAll())).toBe(1)
 

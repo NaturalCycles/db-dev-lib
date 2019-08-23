@@ -73,8 +73,8 @@ export async function testDao (dao: CommonDao<any>, DBQuery: typeof DBQueryType)
 
   // DELETE BY
   q = new DBQuery<TestItem>(TEST_TABLE).filter('even', '=', false)
-  const idsDeleted = await dao.deleteByQuery(q)
-  expect(idsDeleted.sort()).toEqual(expectedItems.filter(item => !item.even).map(item => item.id))
+  const deleted = await dao.deleteByQuery(q)
+  expect(deleted).toBe(expectedItems.filter(item => !item.even).length)
 
   expect(await dao.runQueryCount(queryAll())).toBe(1)
 
