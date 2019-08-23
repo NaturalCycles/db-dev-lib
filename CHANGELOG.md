@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.8...v1.1.9) (2019-08-23)
+
+
+### Bug Fixes
+
+* adopt to new db-lib ([08094a0](https://github.com/NaturalCycles/db-dev-lib/commit/08094a0))
+
 ## [1.1.8](https://github.com/NaturalCycles/db-dev-lib/compare/v1.1.7...v1.1.8) (2019-08-20)
 
 
